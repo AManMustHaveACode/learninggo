@@ -1,0 +1,40 @@
+// LeetCode 17 电话号码
+func letterCombinations(digits string) []string {
+data := map[string][]string{
+		"2": {"a", "b", "c"},
+		"3": {"d", "e", "f"},
+		"4": {"g", "h", "i"},
+		"5": {"j", "k", "l"},
+		"6": {"m", "n", "o"},
+		"7": {"p", "q", "r", "s"},
+		"8": {"t", "u", "v"},
+		"9": {"w", "x", "y", "z"},}
+	if i := len(digits); i== 0 {
+		return []string{}
+	}
+	if i := len(digits); i == 1 {
+		result := data[digits]
+        return result
+	}
+
+	// low
+	returnStrList := data[string(digits[0])]
+	fmt.Println(returnStrList)
+	returnStr := []string{}
+	for i:= 1; i < len(digits); i++ {
+		fmt.Println("i:",i)
+		for _, str :=range(returnStrList){
+			fmt.Println(str)
+			for _, digit := range(data[string(digits[i])]){
+				fmt.Println(str+digit)
+				if len(str + digit) == len(digits){
+					returnStr = append(returnStr, str + digit)
+				}
+				returnStrList = append(returnStrList, str+digit)
+			}
+		}
+	}
+	fmt.Println(returnStrList)
+	fmt.Println(returnStr)
+	return returnStr
+}
